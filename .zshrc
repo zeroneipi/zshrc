@@ -70,6 +70,7 @@ ZSH_THEME="agnoster"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     git
+    ssh-agent
     ubuntu
     zsh-autosuggestions
     zsh-syntax-highlighting
@@ -80,6 +81,9 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+zstyle :omz:plugins:ssh-agent agent-forwarding on
+zstyle :omz:plugins:ssh-agent identities /projects/.ssh/github_id_rsa
+
 _zsh_autosuggest_strategy_histdb_top() {
     local query="select commands.argv from
     history left join commands on history.command_id = commands.rowid
