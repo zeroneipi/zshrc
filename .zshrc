@@ -74,18 +74,16 @@ plugins=(
     ubuntu
     zsh-autosuggestions
     zsh-syntax-highlighting
+    zsh-histdb
     tmux
 )
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
 zstyle :omz:plugins:ssh-agent agent-forwarding on
-zstyle :omz:plugins:ssh-agent identities /projects/.ssh/github_id_rsa
+#zstyle :omz:plugins:ssh-agent identities id_rsa
 
-source $HOME/.oh-my-zsh/custom/plugins/zsh-histdb/sqlite-history.zsh
-autoload -Uz add-zsh-hook
-
+# User configuration
 _zsh_autosuggest_strategy_histdb_top() {
     local query="select commands.argv from
     history left join commands on history.command_id = commands.rowid
